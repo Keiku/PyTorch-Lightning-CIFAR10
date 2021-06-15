@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+hydra = "*"
+torch = "==1.7.1"
+torchvision = "==0.8.2"
+torchaudio = "==0.7.2"
+pytorch-lightning = "==1.1.8"
+hydra-core = "==1.0.0"
+hydra-colorlog = "*"
+
+[dev-packages]
+ipdb = "*"
+
+[requires]
+python_version = "3.8"

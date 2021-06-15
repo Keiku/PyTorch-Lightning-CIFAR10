@@ -1,0 +1,4 @@
+# @package _group_
+
+train:
+  batch_size: 512
