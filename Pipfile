@@ -16,6 +16,7 @@ omegaconf = "==2.0.1"
 [dev-packages]
 ipdb = "*"
 black = "*"
+vulture = "*"
 
 [requires]
 python_version = "3.8"
