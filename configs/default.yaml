@@ -6,8 +6,6 @@ hydra:
   run:
     dir: ./outputs
   output_subdir: ./configs/${now:%Y-%m-%d}/${now:%H-%M-%S}
-  job:
-    name: log_${now:%Y-%m-%d}_${now:%H-%M-%S}
 
 runs:
   dev: False
@@ -27,12 +25,8 @@ train:
   num_workers: 4
   learning_rate: 1e-2
   weight_decay: 1e-2
-  checkpoint_model: ''
-  checkpoint_interval: 5
-  checkpoints_dir: 'checkpoints'
   tensorboard_dir: 'logs'
 
 test:
-  num_classes: 10
   batch_size: 512
   checkpoint_model: ''
