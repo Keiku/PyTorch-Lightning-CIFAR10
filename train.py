@@ -1,6 +1,4 @@
 import os
-from pathlib import Path
-from argparse import ArgumentParser
 
 import hydra
 from hydra.core.hydra_config import HydraConfig
@@ -27,8 +25,7 @@ def main(cfg: DictConfig) -> None:
     if cfg.runs.logger == "wandb":
         logger = WandbLogger(name=cfg.train.classifier, project="cifar10")
     elif cfg.runs.logger == "tensorboard":
-        logger = TensorBoardLogger(cfg.train.tensorboard_dir,
-                                   name=cfg.train.classifier)
+        logger = TensorBoardLogger(cfg.train.tensorboard_dir, name=cfg.train.classifier)
 
     checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=False)
 
@@ -48,7 +45,7 @@ def main(cfg: DictConfig) -> None:
     model = LitCIFAR10Model(cfg)
 
     if cfg.runs.resume:
-        state_dict = f'./models/state_dicts/{cfg.train.classifier}.pt'
+        state_dict = f"./models/state_dicts/{cfg.train.classifier}.pt"
         model.model.load_state_dict(torch.load(state_dict))
 
     if cfg.runs.evaluate:
