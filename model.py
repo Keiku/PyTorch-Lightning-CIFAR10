@@ -39,6 +39,7 @@ class LitCIFAR10Model(pl.LightningModule):
         loss, accuracy = self.forward(batch)
         self.log("loss/val", loss)
         self.log("acc/val", accuracy)
+        return loss
 
     def test_step(self, batch, batch_nb):
         loss, accuracy = self.forward(batch)
