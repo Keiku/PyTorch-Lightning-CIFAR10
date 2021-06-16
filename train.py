@@ -1,6 +1,6 @@
 import os
+from pathlib import Path
 from argparse import ArgumentParser
-import logging
 
 import hydra
 from hydra.core.hydra_config import HydraConfig
@@ -11,8 +11,8 @@ from pytorch_lightning import Trainer, seed_everything
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import WandbLogger, TensorBoardLogger
 
-from dataset import LitCIFAR10DataModule
-from model import LitCIFAR1010Model
+from datamodule import LitCIFAR10DataModule
+from model import LitCIFAR10Model
 
 
 @hydra.main(config_path="./configs", config_name="default.yaml")
@@ -20,12 +20,6 @@ def main(cfg: DictConfig) -> None:
 
     if "experiments" in cfg.keys():
         cfg = OmegaConf.merge(cfg, cfg.experiments)
-
-    # A logger for this file
-    logger = logging.getLogger(__name__)
-
-    # NOTE: hydra causes the python file to run in hydra.run.dir by default
-    logger.info(f"Run script in {HydraConfig.get().run.dir}")
 
     seed_everything(0)
     os.environ["CUDA_VISIBLE_DEVICES"] = cfg.runs.gpu_id
@@ -50,7 +44,7 @@ def main(cfg: DictConfig) -> None:
         precision=cfg.runs.precision,
     )
 
-    data = LitCIFAR10DataModule(cfg)
+    datamodule = LitCIFAR10DataModule(cfg)
     model = LitCIFAR10Model(cfg)
 
     if cfg.runs.resume:
@@ -58,9 +52,9 @@ def main(cfg: DictConfig) -> None:
         model.model.load_state_dict(torch.load(state_dict))
 
     if cfg.runs.evaluate:
-        trainer.test(model, data.test_dataloader())
+        trainer.test(model, datamodule.test_dataloader())
     else:
-        trainer.fit(model, data)
+        trainer.fit(model, datamodule)
         trainer.test()
 
 
