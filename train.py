@@ -27,7 +27,7 @@ def main(cfg: DictConfig) -> None:
     elif cfg.runs.logger == "tensorboard":
         logger = TensorBoardLogger(cfg.train.tensorboard_dir, name=cfg.train.classifier)
 
-    checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=False)
+    checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=True)
 
     trainer = Trainer(
         fast_dev_run=cfg.runs.dev,
@@ -39,14 +39,11 @@ def main(cfg: DictConfig) -> None:
         max_epochs=cfg.train.num_epochs,
         checkpoint_callback=checkpoint,
         precision=cfg.runs.precision,
+        resume_from_checkpoint=cfg.train.checkpoint,
     )
 
     datamodule = LitCIFAR10DataModule(cfg)
     model = LitCIFAR10Model(cfg)
-
-    if cfg.runs.resume:
-        state_dict = f"./models/state_dicts/{cfg.train.classifier}.pt"
-        model.model.load_state_dict(torch.load(state_dict))
 
     if cfg.runs.evaluate:
         trainer.test(model, datamodule.test_dataloader())
