@@ -9,7 +9,6 @@ hydra:
 
 runs:
   dev: False
-  resume: False
   evaluate: False
   logger: 'tensorboard'
   gpu_id: '0'
@@ -20,12 +19,13 @@ dataset:
 
 train:
   classifier: 'resnet18'
-  num_epochs: 2
+  num_epochs: 200
   batch_size: 512
   num_workers: 4
   learning_rate: 1e-2
   weight_decay: 1e-2
   tensorboard_dir: 'logs'
+  checkpoint: null
 
 test:
   batch_size: 512
