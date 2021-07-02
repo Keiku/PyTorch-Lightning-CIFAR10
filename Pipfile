@@ -13,6 +13,7 @@ hydra-core = "==1.0.0"
 hydra-colorlog = "*"
 omegaconf = "==2.0.1"
 wandb = "*"
+timm = "*"
 
 [dev-packages]
 ipdb = "*"
