@@ -22,9 +22,9 @@ def main(cfg: DictConfig) -> None:
     os.environ["CUDA_VISIBLE_DEVICES"] = cfg.runs.gpu_id
 
     if cfg.runs.logger == "wandb":
-        logger = WandbLogger(name=cfg.train.classifier, project="cifar10")
+        logger = WandbLogger(name=cfg.model.classifier, project="cifar10")
     elif cfg.runs.logger == "tensorboard":
-        logger = TensorBoardLogger(cfg.train.tensorboard_dir, name=cfg.train.classifier)
+        logger = TensorBoardLogger(cfg.train.tensorboard_dir, name=cfg.model.classifier)
 
     checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=True)
 
