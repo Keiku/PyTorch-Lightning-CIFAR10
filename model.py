@@ -3,9 +3,11 @@ import torch
 from pytorch_lightning.metrics import Accuracy
 
 from models.resnet import resnet18, resnet34, resnet50
+from torchvision.models import resnet18
+import timm
 from schduler import WarmupCosineLR
 
-all_classifiers = {
+classifiers = {
     "resnet18": resnet18(),
     "resnet34": resnet34(),
     "resnet50": resnet50(),
@@ -20,7 +22,22 @@ class LitCIFAR10Model(pl.LightningModule):
         self.criterion = torch.nn.CrossEntropyLoss()
         self.accuracy = Accuracy()
 
-        self.model = all_classifiers[self.cfg.train.classifier]
+        self.model = classifiers[self.cfg.model.classifier]
+
+    def get_model(cfg):
+        if cfg.model.implementation == 'scratch':
+            model = all_classifiers[self.cfg.model.classifier]
+        elif cfg.model.implementation == 'torchvision':
+            model = resnet18(pretrained=cfg.model.pretrained)
+        elif cfg.model.implementation == 'timm':
+            model = timm.create_model(
+                cfg.model.classifier,
+                pretrained=cfg.model.pretrained,
+                num_classes=cfg.train.num_classes)
+        else:
+            raise NotImplementedError()
+
+        return model
 
     def forward(self, batch):
         images, labels = batch
