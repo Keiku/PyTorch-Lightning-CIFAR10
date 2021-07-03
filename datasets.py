@@ -23,7 +23,7 @@ class CIFAR10Dataset(torch.utils.data.Dataset):
         labels = self.labels
         label_mapping_path = Path(cfg.dataset.root_dir) / 'cifar/labels.txt'
         df_label_mapping = pd.read_table(label_mapping_path.as_posix(), names=['label'])
-        df_label_mapping['target'] = range(10)
+        df_label_mapping['target'] = range(cfg.train.num_classes)
 
         label_mapping_dict = dict(zip(
             df_label_mapping['label'].values.tolist(),
@@ -33,14 +33,9 @@ class CIFAR10Dataset(torch.utils.data.Dataset):
         return targets
 
     def __getitem__(self, index):
-        cfg = self.cfg
-        image_dir = self.image_dir
-        file_list = self.file_list
-        targets = self.targets
-
-        filename = file_list[index]
-        targets = targets[index]
-        image_path = image_dir / filename
+        filename = self.file_list[index]
+        targets = self.targets[index]
+        image_path = self.image_dir / filename
         image = Image.open(image_path.as_posix())
 
         if self.transform is not None:
