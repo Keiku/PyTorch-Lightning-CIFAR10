@@ -1,4 +1,15 @@
 # @package _group_
 
+model:
+  classifier: 'resnet18'
+  implementation: 'scratch'
+
+transform:
+  normalization: 'cifar10'
+
+dataset:
+  loading: 'torchvision'
+
 train:
   batch_size: 512
+  num_epochs: 200
