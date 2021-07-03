@@ -1,0 +1,17 @@
+# @package _group_
+
+runs:
+  evaluate: True
+
+dataset:
+  loading: 'torchvision'
+
+model:
+  classifier: 'resnet18'
+  implementation: 'scratch'
+
+transform:
+  normalization: 'cifar10'
+
+test:
+  checkpoint_model: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=9-step=969.ckpt'"
