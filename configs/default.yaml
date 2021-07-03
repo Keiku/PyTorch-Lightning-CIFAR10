@@ -10,25 +10,30 @@ hydra:
 runs:
   dev: False
   evaluate: False
+  # Specify 'tensorboard' or 'wandb'.
   logger: 'tensorboard'
   gpu_id: '0'
   precision: 32
 
 dataset:
   root_dir: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/data'
-  loading: 'custom'
+  # Specify 'custom' when loading as a custom dataset. By default, load by torchvision is performed.
+  loading: 'torchvision'
 
 model:
   classifier: 'resnet18'
-  implementation: 'timm'
+  # Specify 'scratch' or 'timm'.
+  implementation: 'scratch'
+  # Specifies whether to use the pretrained model with timm.
   pretrained: True
 
 transform:
-  normalization: 'imagenet'
+  # Specify 'cidar10' in the scratch implementation of resnet, and specify 'imagenet' when using the pretrained model of timm.
+  normalization: 'cifar10'
 
 train:
   num_classes: 10
-  num_epochs: 10
+  num_epochs: 200
   batch_size: 512
   num_workers: 4
   learning_rate: 1e-2
