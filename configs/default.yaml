@@ -15,7 +15,8 @@ runs:
   precision: 32
 
 dataset:
-  image_dir: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/data'
+  root_dir: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/data'
+  loading: 'custom'
 
 model:
   classifier: 'resnet18'
