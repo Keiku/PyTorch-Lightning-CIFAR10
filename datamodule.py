@@ -2,6 +2,7 @@ import pytorch_lightning as pl
 from torch.utils.data import DataLoader
 from torchvision import transforms as T
 from torchvision.datasets import CIFAR10
+from datasets import CIFAR10Dataset
 
 
 class LitCIFAR10DataModule(pl.LightningDataModule):
@@ -22,6 +23,24 @@ class LitCIFAR10DataModule(pl.LightningDataModule):
             std =(0.229, 0.224, 0.225)
         return {'mean': mean, 'std': std}
 
+    def get_dataset(self, cfg, train, transform):
+        if cfg.dataset.loading == 'torchvision':
+            dataset = CIFAR10(
+                root=cfg.dataset.root_dir,
+                train=train,
+                transform=transform,
+                download=train,
+            )
+        elif cfg.dataset.loading == 'custom':
+            dataset = CIFAR10Dataset(
+                cfg=cfg,
+                train=train,
+                transform=transform,
+            )
+        else:
+            raise NotImplementedError
+        return dataset
+
     def train_dataloader(self):
         cfg = self.cfg
         transform = T.Compose(
@@ -32,11 +51,10 @@ class LitCIFAR10DataModule(pl.LightningDataModule):
                 T.Normalize(self.mean, self.std),
             ]
         )
-        dataset = CIFAR10(
-            root=cfg.dataset.image_dir,
+        dataset = self.get_dataset(
+            cfg=cfg,
             train=True,
             transform=transform,
-            download=True,
         )
         dataloader = DataLoader(
             dataset,
@@ -56,8 +74,8 @@ class LitCIFAR10DataModule(pl.LightningDataModule):
                 T.Normalize(self.mean, self.std),
             ]
         )
-        dataset = CIFAR10(
-            root=cfg.dataset.image_dir,
+        dataset = self.get_dataset(
+            cfg=cfg,
             train=False,
             transform=transform
         )
