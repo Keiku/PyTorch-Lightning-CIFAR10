@@ -3,7 +3,6 @@ import torch
 from pytorch_lightning.metrics import Accuracy
 
 from models.resnet import resnet18, resnet34, resnet50
-from torchvision.models import resnet18
 import timm
 from schduler import WarmupCosineLR
 
@@ -27,8 +26,6 @@ class LitCIFAR10Model(pl.LightningModule):
     def get_model(self, cfg):
         if cfg.model.implementation == 'scratch':
             model = classifiers[self.cfg.model.classifier]
-        elif cfg.model.implementation == 'torchvision':
-            model = resnet18(pretrained=cfg.model.pretrained)
         elif cfg.model.implementation == 'timm':
             model = timm.create_model(
                 cfg.model.classifier,
