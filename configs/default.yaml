@@ -43,4 +43,4 @@ train:
 
 test:
   batch_size: 512
-  checkpoint_model: ''
+  checkpoint_model: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
