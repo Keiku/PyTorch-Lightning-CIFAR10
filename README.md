@@ -37,7 +37,7 @@ $ docker run --rm -it --runtime=nvidia \
       -e HOME=/home/docker \
       --workdir /work/PyTorch-Lightning-CIFAR10 \
       --ipc host \
-      ubuntu20-cuda11-py38 bash
+      pytorch-lightning-cifar10 bash
 ```
 
 ### Prepare dataset
@@ -68,8 +68,31 @@ dataset:
 
 The following three methods are available for modeling.
 
-* Scratch implementation resnet18, resnet32, resnet50
-* timm
+* **Scratch implementation** resnet18, resnet32, resnet50
+* **timm**
+
+When using the scratch implementation of resnet, specify config as follows.
+
+```
+model:
+  classifier: 'resnet18'
+  implementation: 'scratch'
+
+transform:
+  normalization: 'cifar10'
+```
+
+When using timm's imagenet pretrained model, specify config as follows.
+
+```
+model:
+  classifier: 'resnet18'
+  implementation: 'timm'
+  pretrained: True
+
+transform:
+  normalization: 'imagenet'
+```
 
 ### Train
 
@@ -104,7 +127,9 @@ $ pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test/
 
 ### Results
 
-The results will come out later.
+The results of TensorBoard are as follows.
+
+![tensorboard](results/tensorboard.png)
 
 ### References
 
@@ -114,8 +139,9 @@ The results will come out later.
 
 This repository is still work in progress. Please use with caution.
 
-- [x] Docker and pipenv.
 - [x] check code format with black, isort, vulture.
-- [] Integration of hydra color logger and PyTorch. Lighting logger (Probably not possible).
-- [] GPU usage for custom dataset does not remain high.
+- [] Docker and pipenv.
+- [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
+- [] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high.
+- [] In ``evaluate: True``, Accuracy is a strange value.
 - [] Fine tuning by torchvision's pretrained model
