@@ -140,7 +140,7 @@ The results of TensorBoard are as follows.
 This repository is still work in progress. Please use with caution.
 
 - [x] check code format with black, isort, vulture.
-- [] Docker and pipenv.
+- [x] Docker and pipenv.
 - [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
 - [] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high.
 - [] In ``evaluate: True``, Accuracy is a strange value.
