@@ -1,9 +1,9 @@
 import pytorch_lightning as pl
+import timm
 import torch
 from pytorch_lightning.metrics import Accuracy
 
 from models.resnet import resnet18, resnet34, resnet50
-import timm
 from schduler import WarmupCosineLR
 
 classifiers = {
@@ -24,13 +24,14 @@ class LitCIFAR10Model(pl.LightningModule):
         self.model = self.get_model(cfg)
 
     def get_model(self, cfg):
-        if cfg.model.implementation == 'scratch':
+        if cfg.model.implementation == "scratch":
             model = classifiers[self.cfg.model.classifier]
-        elif cfg.model.implementation == 'timm':
+        elif cfg.model.implementation == "timm":
             model = timm.create_model(
                 cfg.model.classifier,
                 pretrained=cfg.model.pretrained,
-                num_classes=cfg.train.num_classes)
+                num_classes=cfg.train.num_classes,
+            )
         else:
             raise NotImplementedError()
 
