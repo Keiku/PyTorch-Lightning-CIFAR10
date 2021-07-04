@@ -14,4 +14,4 @@ transform:
   normalization: 'cifar10'
 
 test:
-  checkpoint_model: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=9-step=969.ckpt'"
+  checkpoint_model: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
