@@ -44,5 +44,5 @@ train:
 
 test:
   batch_size: 512
-  hparams: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/outputs/train_exp01/logs/resnet18/version_0/hparams.yaml'
+  hparams: './outputs/train_exp01/logs/resnet18/version_0/hparams.yaml'
   checkpoint: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
