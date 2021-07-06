@@ -4,7 +4,8 @@ runs:
   evaluate: True
 
 dataset:
-  loading: 'torchvision'
+  root_dir : '/home/anasys/datasets'
+  loading: 'custom'
 
 model:
   classifier: 'resnet18'
@@ -14,4 +15,5 @@ transform:
   normalization: 'cifar10'
 
 test:
-  checkpoint_model: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
+  hparams: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/outputs/train_exp01/logs/resnet18/version_0/hparams.yaml'
+  checkpoint: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
