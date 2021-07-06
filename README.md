@@ -31,7 +31,7 @@ Run docker with the following command.
 ```
 $ docker run --rm -it --runtime=nvidia \
       -v /mnt/:/mnt \
-      -v /home/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/:/work/PyTorch-Lightning-CIFAR10 \
+      -v /mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/:/work/PyTorch-Lightning-CIFAR10 \
       -u (id -u):(id -g) \
       -e HOSTNAME=(hostname) \
       -e HOME=/home/docker \
@@ -123,6 +123,21 @@ You can run test with the same code as train.
 
 ```
 $ pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test/exp01
+
+```
+
+The following results are obtained.
+
+```
+Global seed set to 0
+GPU available: True, used: True
+TPU available: None, using: 0 TPU cores
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Testing: 100%|████████████████████████████████████████| 19/19 [00:03<00:00,  5.88it/s]
+--------------------------------------------------------------------------------
+DATALOADER:0 TEST RESULTS
+{'acc/test': 93.1743392944336}
+--------------------------------------------------------------------------------
 ```
 
 ### Results
@@ -142,6 +157,6 @@ This repository is still work in progress. Please use with caution.
 - [x] check code format with black, isort, vulture.
 - [x] Docker and pipenv.
 - [x] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high. => GPU usage remained high (100%) when loaded from AWS EBS instead of AWS EFS.
-- [] In ``evaluate: True``, Accuracy is a strange value.
+- [x] In ``evaluate: True``, Accuracy is a strange value. => It was solved by loading properly with load_from_checkpoint. See also [In load_from_checkpoint, "TypeError: __init__ () missing 1 required positional argument:'cfg'" · Discussion #8289 · PyTorchLightning/pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning/discussions/8289).
 - [] Fine tuning by torchvision's pretrained model
 - [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
