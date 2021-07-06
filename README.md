@@ -96,19 +96,19 @@ transform:
 
 ### Train
 
-`train.py` performs training/validation according to the specified config. A checkpoint for each epoch is saved and evaluated for validation.
+`train.py` performs training/validation according to the specified config. The checkpoint is saved in the best epoch that monitors the accuracy of validation.
 
-To execute the experiment of `configs/experiments/train_exp01.yaml`, execute as follows. Specify the output destination as `hydra.run.dir=outputs/train/exp01`.
+To execute the experiment of `configs/experiments/train_exp01.yaml`, execute as follows. Specify the output destination as `hydra.run.dir=outputs/train_exp01`.
 
 ```
-$ pipenv run python train.py +experiments=train_exp01 hydra.run.dir=outputs/train/exp01
+$ pipenv run python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
 ```
 
 If you use Docker, execute the following command.
 
 ```
 $ export TORCH_HOME=/home/docker
-$ python train.py +experiments=train_exp01 hydra.run.dir=outputs/train/exp01
+$ python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
 ```
 
 ### Test
@@ -122,7 +122,7 @@ runs:
 You can run test with the same code as train.
 
 ```
-$ pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test/exp01
+$ pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test_exp01
 
 ```
 
