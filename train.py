@@ -5,7 +5,7 @@ import torch
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning import Trainer, seed_everything
-from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 
 from datamodule import LitCIFAR10DataModule
@@ -27,6 +27,7 @@ def main(cfg: DictConfig) -> None:
         logger = TensorBoardLogger(cfg.train.tensorboard_dir, name=cfg.model.classifier)
 
     checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=True)
+    lr_monitor = LearningRateMonitor(logging_interval='step')
 
     trainer = Trainer(
         fast_dev_run=cfg.runs.dev,
@@ -36,9 +37,9 @@ def main(cfg: DictConfig) -> None:
         weights_summary=None,
         log_every_n_steps=1,
         max_epochs=cfg.train.num_epochs,
-        checkpoint_callback=checkpoint,
         precision=cfg.runs.precision,
         resume_from_checkpoint=cfg.train.checkpoint,
+        callbacks=[checkpoint, lr_monitor],
     )
 
     datamodule = LitCIFAR10DataModule(cfg)
