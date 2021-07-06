@@ -152,8 +152,6 @@ The results of TensorBoard are as follows.
 
 ### TODOs
 
-This repository is still work in progress. Please use with caution.
-
 - [x] check code format with black, isort, vulture.
 - [x] Docker and pipenv.
 - [x] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high. => GPU usage remained high (100%) when loaded from AWS EBS instead of AWS EFS.
