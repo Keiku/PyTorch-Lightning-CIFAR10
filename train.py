@@ -45,6 +45,8 @@ def main(cfg: DictConfig) -> None:
     model = LitCIFAR10Model(cfg)
 
     if cfg.runs.evaluate:
+        hparams = OmegaConf.load(cfg.test.hparams)
+        model = LitCIFAR10Model.load_from_checkpoint(checkpoint_path=cfg.test.checkpoint, **hparams)
         trainer.test(model, datamodule.test_dataloader())
     else:
         trainer.fit(model, datamodule)
