@@ -14,8 +14,9 @@ classifiers = {
 
 
 class LitCIFAR10Model(pl.LightningModule):
-    def __init__(self, cfg):
-        super().__init__()
+    def __init__(self, cfg, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.save_hyperparameters()
         self.cfg = cfg
 
         self.criterion = torch.nn.CrossEntropyLoss()
