@@ -16,7 +16,8 @@ runs:
   precision: 32
 
 dataset:
-  root_dir: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/data'
+  # Do not specify AWS EFS. Please specify AWS EBS.
+  root_dir: '/home/anasys/datasets'
   # Specify 'custom' when loading as a custom dataset. By default, load by torchvision is performed.
   loading: 'torchvision'
 
@@ -43,4 +44,5 @@ train:
 
 test:
   batch_size: 512
-  checkpoint_model: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
+  hparams: '/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/outputs/train_exp01/logs/resnet18/version_0/hparams.yaml'
+  checkpoint: "./outputs/train_exp01/logs/resnet18/version_0/checkpoints/'epoch=198-step=19302.ckpt'"
