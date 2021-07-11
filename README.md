@@ -11,8 +11,8 @@ Details of CIFAR-10 can be found at the following link. [CIFAR-10 and CIFAR-100 
 
 I am using the following PyTorch environment. I haven't used it yet because it has changed a lot in ``torch==1.9.0``. See `Pipfile` or `requirements.txt` for more information.
 
-* torch==1.8.0
-* torchvision==0.9.0
+* torch==1.8.1
+* torchvision==0.9.1
 * pytorch-lightning==1.3.8
 
 ## Instalation
@@ -20,7 +20,7 @@ I am using the following PyTorch environment. I haven't used it yet because it h
 I run in the following environment. If you have a similar environment, you can prepare the environment immediately with pipenv.
 
 * Ubuntu 20.04.1 LTS
-* CUDA Version 11.0
+* CUDA Version 11.1
 * Python 3.8.5
 
 ```
