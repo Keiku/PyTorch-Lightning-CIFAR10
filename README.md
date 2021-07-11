@@ -16,28 +16,28 @@ I run in the following environment. If you have a similar environment, you can p
 * Python 3.8.5
 
 ```
-$ pip install pipenv
-$ pipenv sync
+pip install pipenv
+pipenv sync
 ```
 
 If you do not have a cuda environment, please use Docker. Build docker with the following command.
 
 ```
-$ docker-compose up -d dev
+docker-compose up -d dev
 ```
 
 Run docker with the following command.
 
 ```
-$ docker run --rm -it --runtime=nvidia \
-      -v /mnt/:/mnt \
-      -v /mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/:/work/PyTorch-Lightning-CIFAR10 \
-      -u (id -u):(id -g) \
-      -e HOSTNAME=(hostname) \
-      -e HOME=/home/docker \
-      --workdir /work/PyTorch-Lightning-CIFAR10 \
-      --ipc host \
-      pytorch-lightning-cifar10 bash
+docker run --rm -it --runtime=nvidia \
+    -v /mnt/:/mnt \
+    -v /mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/:/work/PyTorch-Lightning-CIFAR10 \
+    -u (id -u):(id -g) \
+    -e HOSTNAME=(hostname) \
+    -e HOME=/home/docker \
+    --workdir /work/PyTorch-Lightning-CIFAR10 \
+    --ipc host \
+    pytorch-lightning-cifar10 bash
 ```
 
 ### Prepare dataset
@@ -54,8 +54,8 @@ dataset:
 If you want to load CIFAR-10 as a **custom dataset**, download the raw image as shown below.
 
 ```
-$ cd data/
-$ bash download_cifar10.sh # Downloads the CIFAR-10 dataset (~161 MB)
+cd data/
+bash download_cifar10.sh # Downloads the CIFAR-10 dataset (~161 MB)
 ```
 Also, specify config as custom for loading.
 
@@ -101,14 +101,14 @@ transform:
 To execute the experiment of `configs/experiments/train_exp01.yaml`, execute as follows. Specify the output destination as `hydra.run.dir=outputs/train_exp01`.
 
 ```
-$ pipenv run python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
+pipenv run python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
 ```
 
 If you use Docker, execute the following command.
 
 ```
-$ export TORCH_HOME=/home/docker
-$ python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
+export TORCH_HOME=/home/docker
+python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
 ```
 
 ### Test
@@ -122,7 +122,7 @@ runs:
 You can run test with the same code as train.
 
 ```
-$ pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test_exp01
+pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test_exp01
 
 ```
 
