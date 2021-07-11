@@ -131,7 +131,6 @@ You can run test with the same code as train.
 
 ```
 pipenv run python train.py +experiments=test_exp01 hydra.run.dir=outputs/test_exp01
-
 ```
 
 The following results are obtained.
