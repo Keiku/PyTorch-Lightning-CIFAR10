@@ -7,6 +7,14 @@ This is a refactored repository of [huyvnphan/PyTorch_CIFAR10](https://github.co
 
 Details of CIFAR-10 can be found at the following link. [CIFAR-10 and CIFAR-100 datasets](https://www.cs.toronto.edu/~kriz/cifar.html)
 
+## PyTorch Environment
+
+I am using the following PyTorch environment. I haven't used it yet because it has changed a lot in ``torch==1.9.0``. See `Pipfile` or `requirements.txt` for more information.
+
+* torch==1.8.0
+* torchvision==0.9.0
+* pytorch-lightning==1.3.8
+
 ## Instalation
 
 I run in the following environment. If you have a similar environment, you can prepare the environment immediately with pipenv.
