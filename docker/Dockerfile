@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.0-base-ubuntu20.04
+FROM nvidia/cuda:11.1-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /bin/python3.8 /bin/python
-RUN ln -s /usr/bin/pip3.8 /usr/bin/pip
 RUN pip3 install -U pip
 
 # set the user created by entrypoint to sudouser

@@ -1,7 +1,7 @@
 version: "2.3"
 services:
   dev:
-    image: pytorch-lightning-cifar10
+    image: keiku/pytorch-lightning-cifar10
     build:
       context: .
       dockerfile: ./docker/Dockerfile
