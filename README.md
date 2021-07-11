@@ -45,7 +45,7 @@ docker run --rm -it --runtime=nvidia \
     -e HOME=/home/docker \
     --workdir /work/PyTorch-Lightning-CIFAR10 \
     --ipc host \
-    pytorch-lightning-cifar10 bash
+    keiku/pytorch-lightning-cifar10 bash
 ```
 
 ### Prepare dataset
