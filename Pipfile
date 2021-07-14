@@ -19,6 +19,7 @@ wandb = "*"
 timm = "==0.4.12"
 pandas = "*"
 torchmetrics = "*"
+aiohttp = "*"
 
 [dev-packages]
 ipdb = "*"
