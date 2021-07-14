@@ -1,7 +1,7 @@
 import pytorch_lightning as pl
 import timm
 import torch
-from pytorch_lightning.metrics import Accuracy
+import torchmetrics
 
 from models.resnet import resnet18, resnet34, resnet50
 from schduler import WarmupCosineLR
@@ -20,7 +20,7 @@ class LitCIFAR10Model(pl.LightningModule):
         self.cfg = cfg
 
         self.criterion = torch.nn.CrossEntropyLoss()
-        self.accuracy = Accuracy()
+        self.accuracy = torchmetrics.Accuracy()
 
         self.model = self.get_model(cfg)
 
