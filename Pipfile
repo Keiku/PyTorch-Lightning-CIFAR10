@@ -18,6 +18,7 @@ omegaconf = "==2.0.1"
 wandb = "*"
 timm = "==0.4.12"
 pandas = "*"
+torchmetrics = "*"
 
 [dev-packages]
 ipdb = "*"
