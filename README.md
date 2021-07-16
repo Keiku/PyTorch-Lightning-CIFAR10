@@ -172,7 +172,8 @@ The results of TensorBoard are as follows.
     - [x] configure_optimizers()
 
 #### Metrics in `model.py`
-    - [x] torchmetrics.Accuracy()
+
+- [x] torchmetrics.Accuracy()
 
 #### API in `train.py`
 
