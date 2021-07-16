@@ -1,15 +1,13 @@
 # PyTorch-Lightning-CIFAR10
 "Not too complicated" training code for CIFAR-10 by PyTorch Lightning
 
-This is a refactored repository of [huyvnphan/PyTorch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10). I'm glad if you can use it as a reference.
-
 ## Dataset
 
 Details of CIFAR-10 can be found at the following link. [CIFAR-10 and CIFAR-100 datasets](https://www.cs.toronto.edu/~kriz/cifar.html)
 
 ## PyTorch Environment
 
-I am using the following PyTorch environment. I haven't used it yet because it has changed a lot in ``torch==1.9.0``. See `Pipfile` or `requirements.txt` for more information.
+I am using the following PyTorch environment. I haven't used it yet because it has changed a lot in ``torch==1.9.0``. See `Pipfile` for more information.
 
 * torch==1.8.1
 * torchvision==0.9.1
@@ -153,6 +151,46 @@ The results of TensorBoard are as follows.
 
 ![tensorboard](results/tensorboard.png)
 
+### PyTorch Lightning API
+
+#### LightningDataModule API in `datamodule.py`
+
+- [x] LightningDataModule
+ - [] prepare_data()
+ - [] setup()
+ - [x] train_dataloader()
+ - [x] val_dataloader()
+ - [x] test_dataloader()
+
+#### LightningModule API in `model.py`
+
+- [x] LightningModule
+ - [x] forward()
+ - [x] training_step()
+ - [x] validation_step()
+ - [x] test_step()
+ - [x] configure_optimizers()
+
+#### Metrics in `model.py`
+ - [x] torchmetrics.Accuracy()
+
+#### API in `train.py`
+
+#### Trainer API
+
+- [x] Trainer
+ - [x] .fit()
+ - [x] ModelCheckpoint()
+ - [x] LearningRateMonitor()
+ - [x] .load_from_checkpoint()
+ - [x] .test()
+
+#### Loggers API
+
+- [x] TensorBoardLogger()
+- [x] WandbLogger()
+
+
 ### References
 
 * [huyvnphan/PyTorch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10)
@@ -161,7 +199,7 @@ The results of TensorBoard are as follows.
 
 - [x] check code format with black, isort, vulture.
 - [x] Docker and pipenv.
-- [x] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high. => GPU usage remained high (100%) when loaded from AWS EBS instead of AWS EFS.
-- [x] In ``evaluate: True``, Accuracy is a strange value. => It was solved by loading properly with load_from_checkpoint. See also [In load_from_checkpoint, "TypeError: __init__ () missing 1 required positional argument:'cfg'" · Discussion #8289 · PyTorchLightning/pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning/discussions/8289).
+- [x] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high. -> GPU usage remained high (100%) when loaded from AWS EBS instead of AWS EFS.
+- [x] In ``evaluate: True``, Accuracy is a strange value. -> It was solved by loading properly with load_from_checkpoint. See also [In load_from_checkpoint, "TypeError: __init__ () missing 1 required positional argument:'cfg'" · Discussion #8289 · PyTorchLightning/pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning/discussions/8289).
 - [] Fine tuning by torchvision's pretrained model
 - [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
