@@ -156,34 +156,34 @@ The results of TensorBoard are as follows.
 #### LightningDataModule API in `datamodule.py`
 
 - [x] LightningDataModule
- - [] prepare_data()
- - [] setup()
- - [x] train_dataloader()
- - [x] val_dataloader()
- - [x] test_dataloader()
+    - [] prepare_data()
+    - [] setup()
+    - [x] train_dataloader()
+    - [x] val_dataloader()
+    - [x] test_dataloader()
 
 #### LightningModule API in `model.py`
 
 - [x] LightningModule
- - [x] forward()
- - [x] training_step()
- - [x] validation_step()
- - [x] test_step()
- - [x] configure_optimizers()
+    - [x] forward()
+    - [x] training_step()
+    - [x] validation_step()
+    - [x] test_step()
+    - [x] configure_optimizers()
 
 #### Metrics in `model.py`
- - [x] torchmetrics.Accuracy()
+    - [x] torchmetrics.Accuracy()
 
 #### API in `train.py`
 
 #### Trainer API
 
 - [x] Trainer
- - [x] .fit()
- - [x] ModelCheckpoint()
- - [x] LearningRateMonitor()
- - [x] .load_from_checkpoint()
- - [x] .test()
+    - [x] .fit()
+    - [x] ModelCheckpoint()
+    - [x] LearningRateMonitor()
+    - [x] .load_from_checkpoint()
+    - [x] .test()
 
 #### Loggers API
 
