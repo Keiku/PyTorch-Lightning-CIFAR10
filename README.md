@@ -210,9 +210,13 @@ The results of TensorBoard are as follows.
 
 ### TODOs
 
-- [x] check code format with black, isort, vulture.
-- [x] Docker and pipenv.
-- [x] GPU usage for custom dataset and light weight model(resnet18, MobileNetV3) does not remain high. -> GPU usage remained high (100%) when loaded from AWS EBS instead of AWS EFS.
-- [x] In ``evaluate: True``, Accuracy is a strange value. -> It was solved by loading properly with load_from_checkpoint. See also [In load_from_checkpoint, "TypeError: __init__ () missing 1 required positional argument:'cfg'" · Discussion #8289 · PyTorchLightning/pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning/discussions/8289).
-- [] Fine tuning by torchvision's pretrained model
+- [x] Check code format with black, isort, vulture
+- [x] Docker and pipenv
+- [x] TensorBoard and Wandb logging
+- [x] Loading by custom dataset
+- [x] Transfer learning by timm
+- [x] Simple evaluation using `.load_from_checkpoint()`
+- [x] Resume training
+- [x] Use torchmetrics
+- [] Transform by albumentations
 - [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
