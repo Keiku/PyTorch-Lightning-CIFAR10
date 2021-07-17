@@ -124,8 +124,7 @@ If you want to resume training, specify the following config.
 ```
 train:
   resume: True
-  checkpoint: "/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/outputs/train_re\
-sume_exp01/logs/resnet18/exp01/checkpoints/last.ckpt"
+  checkpoint: "/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/outputs/train_resume_exp01/logs/resnet18/exp01/checkpoints/last.ckpt"
 ```
 
 Even if you interrupt while using AWS spot instance, you can read `last.ckpt` and restart from the next epoch learning. You can use `run.sh` as a command when restarting.
