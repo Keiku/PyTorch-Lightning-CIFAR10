@@ -32,7 +32,7 @@ If you do not have a cuda environment, please use Docker. Build docker with the 
 docker-compose up -d dev
 ```
 
-Run docker with the following command.
+Run docker with the following command. The following command is for fish shell. For bash, replace `()` with `$()`.
 
 ```
 docker run --rm -it --runtime=nvidia \
