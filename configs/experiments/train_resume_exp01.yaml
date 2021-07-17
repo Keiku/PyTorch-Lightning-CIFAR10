@@ -1,0 +1,19 @@
+# @package _group_
+
+model:
+  version: 'exp01'
+  classifier: 'resnet18'
+  implementation: 'scratch'
+
+transform:
+  normalization: 'cifar10'
+
+dataset:
+  root_dir: '/work/PyTorch-Lightning-CIFAR10/data'
+  loading: 'torchvision'
+
+train:
+  batch_size: 512
+  num_epochs: 200
+  resume: True
+  checkpoint: "/mnt/nfs/kuroyanagi/clones/PyTorch-Lightning-CIFAR10/outputs/train_resume_exp01/logs/resnet18/exp01/checkpoints/last.ckpt"
