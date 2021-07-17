@@ -1,12 +1,12 @@
 import os
+from pathlib import Path
 
 import hydra
 import torch
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
-from pathlib import Path
 from pytorch_lightning import Trainer, seed_everything
-from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
+from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 
 from datamodule import LitCIFAR10DataModule
@@ -25,10 +25,14 @@ def main(cfg: DictConfig) -> None:
     if cfg.runs.logger == "wandb":
         logger = WandbLogger(name=cfg.model.classifier, project=cfg.model.project)
     elif cfg.runs.logger == "tensorboard":
-        logger = TensorBoardLogger(cfg.train.tensorboard_dir, name=cfg.model.classifier, version=cfg.model.version)
+        logger = TensorBoardLogger(
+            cfg.train.tensorboard_dir,
+            name=cfg.model.classifier,
+            version=cfg.model.version,
+        )
 
     checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=True)
-    lr_monitor = LearningRateMonitor(logging_interval='step')
+    lr_monitor = LearningRateMonitor(logging_interval="step")
 
     if cfg.train.resume and Path(cfg.train.checkpoint).exists():
         resume_checkpoint = cfg.train.checkpoint
@@ -53,7 +57,9 @@ def main(cfg: DictConfig) -> None:
 
     if cfg.runs.evaluate:
         hparams = OmegaConf.load(cfg.test.hparams)
-        model = LitCIFAR10Model.load_from_checkpoint(checkpoint_path=cfg.test.checkpoint, **hparams)
+        model = LitCIFAR10Model.load_from_checkpoint(
+            checkpoint_path=cfg.test.checkpoint, **hparams
+        )
         trainer.test(model, datamodule.test_dataloader())
     else:
         trainer.fit(model, datamodule)
