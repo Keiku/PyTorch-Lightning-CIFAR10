@@ -46,7 +46,7 @@ docker run --rm -it --runtime=nvidia \
     keiku/pytorch-lightning-cifar10 bash
 ```
 
-### :gift: Prepare dataset
+## :gift: Prepare dataset
 
 This repository is implemented in two ways, one is to load CIFAR-10 from **torchvision** and the other is to load CIFAR-10 as a **custom dataset**. I want you to use it as learning how to use custom dataset.
 
@@ -70,7 +70,7 @@ dataset:
   loading: 'custom'
 ```
 
-### :writing_hand: Modeling
+## :writing_hand: Modeling
 
 The following three methods are available for modeling.
 
@@ -100,7 +100,7 @@ transform:
   normalization: 'imagenet'
 ```
 
-### :runner: Train
+## :runner: Train
 
 `train.py` performs training/validation according to the specified config. The checkpoint is saved in the best epoch that monitors the accuracy of validation.
 
@@ -117,7 +117,7 @@ export TORCH_HOME=/home/docker
 python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
 ```
 
-### :running_man: Resume Training
+## :running_man: Resume Training
 
 If you want to resume training, specify the following config.
 
@@ -129,7 +129,7 @@ train:
 
 Even if you interrupt while using AWS spot instance, you can read `last.ckpt` and restart from the next epoch learning. You can use `run.sh` as a command when restarting.
 
-### :standing_person: Test
+## :standing_person: Test
 
 Specify `evaluate: True` in config as shown below.
 
@@ -157,13 +157,13 @@ DATALOADER:0 TEST RESULTS
 --------------------------------------------------------------------------------
 ```
 
-### :chart_with_upwards_trend: Results
+## :chart_with_upwards_trend: Results
 
 The results of TensorBoard are as follows.
 
 ![tensorboard](results/tensorboard.png)
 
-### :zap: PyTorch Lightning API
+## :zap: PyTorch Lightning API
 
 #### LightningDataModule API in `datamodule.py`
 
@@ -204,11 +204,11 @@ The results of TensorBoard are as follows.
 - [x] `WandbLogger()`
 
 
-### :closed_book: References
+## :closed_book: References
 
 * [huyvnphan/PyTorch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10)
 
-### :rocket: TODOs
+## :rocket: TODOs
 
 - [x] Check code format with black, isort, vulture
 - [x] Docker and pipenv
