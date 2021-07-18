@@ -1,11 +1,11 @@
 # PyTorch-Lightning-CIFAR10
 "Not too complicated" training code for CIFAR-10 by PyTorch Lightning
 
-## Dataset
+## :gift: Dataset
 
 Details of CIFAR-10 can be found at the following link. [CIFAR-10 and CIFAR-100 datasets](https://www.cs.toronto.edu/~kriz/cifar.html)
 
-## PyTorch Environment
+## :package: PyTorch Environment
 
 I am using the following PyTorch environment. I haven't used it yet because it has changed a lot in ``torch==1.9.0``. See `Pipfile` for more information.
 
@@ -13,7 +13,7 @@ I am using the following PyTorch environment. I haven't used it yet because it h
 * torchvision==0.9.1
 * pytorch-lightning==1.3.8
 
-## Instalation
+## :whale: Instalation
 
 I run in the following environment. If you have a similar environment, you can prepare the environment immediately with pipenv.
 
@@ -46,7 +46,7 @@ docker run --rm -it --runtime=nvidia \
     keiku/pytorch-lightning-cifar10 bash
 ```
 
-### Prepare dataset
+### :gift: Prepare dataset
 
 This repository is implemented in two ways, one is to load CIFAR-10 from **torchvision** and the other is to load CIFAR-10 as a **custom dataset**. I want you to use it as learning how to use custom dataset.
 
@@ -70,7 +70,7 @@ dataset:
   loading: 'custom'
 ```
 
-### Modeling
+### :writing_hand: Modeling
 
 The following three methods are available for modeling.
 
@@ -100,7 +100,7 @@ transform:
   normalization: 'imagenet'
 ```
 
-### Train
+### :runner: Train
 
 `train.py` performs training/validation according to the specified config. The checkpoint is saved in the best epoch that monitors the accuracy of validation.
 
@@ -117,7 +117,7 @@ export TORCH_HOME=/home/docker
 python train.py +experiments=train_exp01 hydra.run.dir=outputs/train_exp01
 ```
 
-### Resume Training
+### :running_man: Resume Training
 
 If you want to resume training, specify the following config.
 
@@ -129,7 +129,7 @@ train:
 
 Even if you interrupt while using AWS spot instance, you can read `last.ckpt` and restart from the next epoch learning. You can use `run.sh` as a command when restarting.
 
-### Test
+### :standing_person: Test
 
 Specify `evaluate: True` in config as shown below.
 
@@ -157,58 +157,58 @@ DATALOADER:0 TEST RESULTS
 --------------------------------------------------------------------------------
 ```
 
-### Results
+### :chart_with_upwards_trend: Results
 
 The results of TensorBoard are as follows.
 
 ![tensorboard](results/tensorboard.png)
 
-### PyTorch Lightning API
+### :zap: PyTorch Lightning API
 
 #### LightningDataModule API in `datamodule.py`
 
-- [x] LightningDataModule
-    - [] prepare_data()
-    - [] setup()
-    - [x] train_dataloader()
-    - [x] val_dataloader()
-    - [x] test_dataloader()
+- [x] `LightningDataModule`
+    - [] `prepare_data()`
+    - [] `setup()`
+    - [x] `train_dataloader()`
+    - [x] `val_dataloader()`
+    - [x] `test_dataloader()`
 
 #### LightningModule API in `model.py`
 
-- [x] LightningModule
-    - [x] forward()
-    - [x] training_step()
-    - [x] validation_step()
-    - [x] test_step()
-    - [x] configure_optimizers()
+- [x] `LightningModule`
+    - [x] `forward()`
+    - [x] `training_step()`
+    - [x] `validation_step()`
+    - [x] `test_step()`
+    - [x] `configure_optimizers()`
 
 #### Metrics in `model.py`
 
-- [x] torchmetrics.Accuracy()
+- [x] `torchmetrics.Accuracy()`
 
 #### API in `train.py`
 
 #### Trainer API
 
-- [x] Trainer
-    - [x] .fit()
-    - [x] ModelCheckpoint()
-    - [x] LearningRateMonitor()
-    - [x] .load_from_checkpoint()
-    - [x] .test()
+- [x] `Trainer`
+    - [x] `.fit()`
+    - [x] `ModelCheckpoint()`
+    - [x] `LearningRateMonitor()`
+    - [x] `.load_from_checkpoint()`
+    - [x] `.test()`
 
 #### Loggers API
 
-- [x] TensorBoardLogger()
-- [x] WandbLogger()
+- [x] `TensorBoardLogger()`
+- [x] `WandbLogger()`
 
 
-### References
+### :closed_book: References
 
 * [huyvnphan/PyTorch_CIFAR10](https://github.com/huyvnphan/PyTorch_CIFAR10)
 
-### TODOs
+### :rocket: TODOs
 
 - [x] Check code format with black, isort, vulture
 - [x] Docker and pipenv
