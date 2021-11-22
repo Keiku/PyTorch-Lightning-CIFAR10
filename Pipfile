@@ -20,6 +20,7 @@ timm = "==0.4.12"
 pandas = "*"
 torchmetrics = "*"
 aiohttp = "*"
+pillow = ">=8.3.2"
 
 [dev-packages]
 ipdb = "*"
