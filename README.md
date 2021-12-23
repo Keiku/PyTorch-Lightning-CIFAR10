@@ -189,6 +189,10 @@ The results of TensorBoard are as follows.
 
 #### API in `train.py`
 
+#### Lightning CLI API
+
+- [] `LightningCLI()`
+
 #### Trainer API
 
 - [x] `Trainer`
@@ -219,3 +223,4 @@ The results of TensorBoard are as follows.
 - [x] Resume training
 - [x] Use torchmetrics
 - [] Transform by albumentations
+- [] Use Lightning CLI and config files
