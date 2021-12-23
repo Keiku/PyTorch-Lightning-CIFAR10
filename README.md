@@ -219,4 +219,3 @@ The results of TensorBoard are as follows.
 - [x] Resume training
 - [x] Use torchmetrics
 - [] Transform by albumentations
-- [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
