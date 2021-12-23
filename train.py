@@ -53,7 +53,7 @@ def main(cfg: DictConfig) -> None:
     )
 
     datamodule = LitCIFAR10DataModule(cfg)
-    model = LitCIFAR10Model(cfg)
+    model = LitCIFAR10Model(cfg, trainer)
 
     if cfg.runs.evaluate:
         hparams = OmegaConf.load(cfg.test.hparams)
