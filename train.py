@@ -44,7 +44,7 @@ def main(cfg: DictConfig) -> None:
         logger=logger if not (cfg.runs.dev or cfg.runs.evaluate) else None,
         gpus=-1,
         deterministic=True,
-        weights_summary=None,
+        enable_model_summary=False,
         log_every_n_steps=1,
         max_epochs=cfg.train.num_epochs,
         precision=cfg.runs.precision,
