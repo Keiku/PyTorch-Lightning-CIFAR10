@@ -63,7 +63,8 @@ def main(cfg: DictConfig) -> None:
         trainer.test(model, datamodule.test_dataloader())
     else:
         trainer.fit(model, datamodule)
-        trainer.test()
+        # NOTE After changing to pytorch-lightning 1.5.2, omitting the argument of trainer.test() does not work. · Discussion #10747 · PyTorchLightning/pytorch-lightning https://github.com/PyTorchLightning/pytorch-lightning/discussions/10747
+        trainer.test(model, datamodule.test_dataloader())
 
 
 if __name__ == "__main__":
