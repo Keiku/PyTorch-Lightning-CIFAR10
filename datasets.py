@@ -48,4 +48,4 @@ class CIFAR10Dataset(torch.utils.data.Dataset):
         return image, targets
 
     def __len__(self):
-        return len(self.file_list)
+        return self.len

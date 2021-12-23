@@ -44,7 +44,7 @@ def main(cfg: DictConfig) -> None:
         logger=logger if not (cfg.runs.dev or cfg.runs.evaluate) else None,
         gpus=-1,
         deterministic=True,
-        weights_summary=None,
+        enable_model_summary=False,
         log_every_n_steps=1,
         max_epochs=cfg.train.num_epochs,
         precision=cfg.runs.precision,
@@ -53,7 +53,7 @@ def main(cfg: DictConfig) -> None:
     )
 
     datamodule = LitCIFAR10DataModule(cfg)
-    model = LitCIFAR10Model(cfg)
+    model = LitCIFAR10Model(cfg, trainer)
 
     if cfg.runs.evaluate:
         hparams = OmegaConf.load(cfg.test.hparams)
@@ -63,7 +63,8 @@ def main(cfg: DictConfig) -> None:
         trainer.test(model, datamodule.test_dataloader())
     else:
         trainer.fit(model, datamodule)
-        trainer.test()
+        # NOTE After changing to pytorch-lightning 1.5.2, omitting the argument of trainer.test() does not work. · Discussion #10747 · PyTorchLightning/pytorch-lightning https://github.com/PyTorchLightning/pytorch-lightning/discussions/10747
+        trainer.test(model, datamodule.test_dataloader())
 
 
 if __name__ == "__main__":

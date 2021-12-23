@@ -7,11 +7,11 @@ Details of CIFAR-10 can be found at the following link. [CIFAR-10 and CIFAR-100 
 
 ## :package: PyTorch Environment
 
-I am using the following PyTorch environment. I haven't used it yet because it has changed a lot in ``torch==1.9.0``. See `Pipfile` for more information.
+I am using the following PyTorch environment. See `Pipfile` for more information.
 
-* torch==1.8.1
-* torchvision==0.9.1
-* pytorch-lightning==1.3.8
+* torch==1.10.0
+* torchvision==0.11.1
+* pytorch-lightning==1.5.2
 
 ## :whale: Instalation
 
@@ -189,6 +189,10 @@ The results of TensorBoard are as follows.
 
 #### API in `train.py`
 
+#### Lightning CLI API
+
+- [] `LightningCLI()`
+
 #### Trainer API
 
 - [x] `Trainer`
@@ -219,4 +223,4 @@ The results of TensorBoard are as follows.
 - [x] Resume training
 - [x] Use torchmetrics
 - [] Transform by albumentations
-- [] Integration of hydra color logger and PyTorch Lighting logger (Probably not possible).
+- [] Use Lightning CLI and config files
