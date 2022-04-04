@@ -168,8 +168,8 @@ The results of TensorBoard are as follows.
 #### LightningDataModule API in `datamodule.py`
 
 - [x] `LightningDataModule`
-    - [] `prepare_data()`
-    - [] `setup()`
+    - [ ] `prepare_data()`
+    - [ ] `setup()`
     - [x] `train_dataloader()`
     - [x] `val_dataloader()`
     - [x] `test_dataloader()`
@@ -191,7 +191,7 @@ The results of TensorBoard are as follows.
 
 #### Lightning CLI API
 
-- [] `LightningCLI()`
+- [ ] `LightningCLI()`
 
 #### Trainer API
 
@@ -222,5 +222,5 @@ The results of TensorBoard are as follows.
 - [x] Simple evaluation using `.load_from_checkpoint()`
 - [x] Resume training
 - [x] Use torchmetrics
-- [] Transform by albumentations
-- [] Use Lightning CLI and config files
+- [ ] Transform by albumentations
+- [ ] Remove Hydra and use Lightning CLI and config files
