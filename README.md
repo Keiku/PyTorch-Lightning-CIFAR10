@@ -225,3 +225,4 @@ The results of TensorBoard are as follows.
 - [ ] Transform by albumentations
 - [ ] Remove Hydra and use Lightning CLI and config files
 - [ ] Add Fault-tolerant Training
+- [ ] Remove pipenv and add requirements.txt or poetry
