@@ -224,3 +224,6 @@ The results of TensorBoard are as follows.
 - [x] Use torchmetrics
 - [ ] Transform by albumentations
 - [ ] Remove Hydra and use Lightning CLI and config files
+- [ ] Add Fault-tolerant Training
+- [ ] Add EarlyStopping
+- [ ] Remove pipenv and add requirements.txt or poetry
